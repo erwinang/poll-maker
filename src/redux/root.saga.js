@@ -1,7 +1,7 @@
-import { all, call } from "redux-saga/effects";
+import { all } from "redux-saga/effects";
 
-import { fetchingRoomDetailsStart } from "./room/room.sagas";
+import roomSagas from "./room/room.sagas";
 
 export default function* rootSaga() {
-  yield all([call(fetchingRoomDetailsStart)]);
+  yield all([...roomSagas]);
 }

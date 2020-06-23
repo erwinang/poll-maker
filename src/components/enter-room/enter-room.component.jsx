@@ -22,9 +22,8 @@ class EnterRoom extends React.Component {
   };
 
   handleSubmit = async (event) => {
-    const { fetchRoomDetailsStart } = this.props;
     event.preventDefault();
-    fetchRoomDetailsStart();
+    this.props.dispatchFetchRoomDetailsStart(this.state.roomName);
     this.setState({ roomName: "" });
   };
 
@@ -47,7 +46,7 @@ class EnterRoom extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchRoomDetailsStart: (roomName) =>
+  dispatchFetchRoomDetailsStart: (roomName) =>
     dispatch(fetchRoomDetailsStart(roomName)),
 });
 

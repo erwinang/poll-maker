@@ -31,10 +31,9 @@ export function* fetchRoomsStart() {
   yield takeLatest(RoomActionTypes.FETCH_ROOMS_START, fetchRoomsAsync);
 }
 
-export function* fetchDetailsAsync(actions) {
+export function* fetchDetailsSaga(actions) {
   try {
     const roomName = yield fetchRoomDetailsStart.payload;
-    console.log(actions);
     const roomRef = firestore.collection("rooms");
     const snapshot = yield roomRef.get();
     const detailsMap = yield call(
@@ -48,6 +47,6 @@ export function* fetchDetailsAsync(actions) {
   }
 }
 
-export function* fetchingRoomDetailsStart() {
-  yield takeLatest(RoomActionTypes.FETCH_ROOM_DETAILS_START, fetchDetailsAsync);
-}
+export default [
+  takeLatest(RoomActionTypes.FETCH_ROOM_DETAILS_START, fetchDetailsSaga),
+]
